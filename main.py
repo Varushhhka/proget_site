@@ -14,22 +14,22 @@ from forms.user import RegisterForm, LoginForm
 
 app = Flask(__name__)
 # api = Api()
-# login_manager = LoginManager()
-# login_manager.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
-# @login_manager.user_loader
-# def load_user(user_id):
-#     db_sess = db_session.create_session()
-#     return db_sess.query(User).get(user_id)
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
 
 
-# @app.route('/')
-# def index():
-#     db_sess = db_session.create_session()
-#     posts = db_sess.query(Posts).all()
-#     return render_template("index.html", posts=posts)
+@app.route('/')
+def index():
+    db_sess = db_session.create_session()
+    posts = db_sess.query(Posts).all()
+    return render_template("index.html", posts=posts)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -69,80 +69,71 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
-# @app.route('/logout')
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
+
+
+@app.route('/posts',  methods=['GET', 'POST'])
 # @login_required
-# def logout():
-#     logout_user()
-#     return redirect("/")
+def add_posts():
+    form = PostsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        posts = Posts()
+        posts.text = form.text.data
+        posts.photo = form.photo.data
+        posts.date = form.date.data
+        posts.is_finished = form.is_finished.data
+        current_user.posts.append(posts)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('posts.html', title='Adding a post', form=form)
 
 
-# @app.route('/posts',  methods=['GET', 'POST'])
+@app.route('/posts/<int:id>', methods=['GET', 'POST'])
 # @login_required
-# def add_posts():
-#     form = PostsForm()
-#     if form.validate_on_submit():
-#         db_sess = db_session.create_session()
-#         posts = Posts()
-#         posts.job = form.job.data
-#         posts.work_size = form.work_size.data
-#         posts.collaborators = form.collaborators.data
-#         posts.start_date = form.start_date.data
-#         posts.end_date = form.end_date.data
-#         posts.is_finished = form.is_finished.data
-#         current_user.posts.append(posts)
-#         db_sess.merge(current_user)
-#         db_sess.commit()
-#         return redirect('/')
-#     return render_template('posts.html', title='Adding a job', form=form)
+def edit_posts(id):
+    form = PostsForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
+        if posts:
+            form.text.data = posts.text
+            form.photo.data = posts.photo
+            form.date.data = posts.date
+            form.is_finished.data = posts.is_finished
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
+        if posts:
+            posts.text = form.text.data
+            posts.photo = form.photo.data
+            posts.date = form.date.data
+            posts.is_finished = form.is_finished.data
+            db_sess.commit()
+            return redirect('/')
+        else:
+            abort(404)
+    return render_template('posts.html', title='Edit a post', form=form)
 
 
-# @app.route('/posts/<int:id>', methods=['GET', 'POST'])
-# @login_required
-# def edit_news(id):
-#     form = PostsForm()
-#     if request.method == "GET":
-#         db_sess = db_session.create_session()
-#         posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
-#         if posts:
-#             form.job.data = posts.job
-#             form.work_size.data = posts.work_size
-#             form.collaborators.data = posts.collaborators
-#             form.start_date.data = posts.start_date
-#             form.end_date.data = posts.end_date
-#             form.is_finished.data = posts.is_finished
-#         else:
-#             abort(404)
-#     if form.validate_on_submit():
-#         db_sess = db_session.create_session()
-#         posts = db_sess.query(Posts).filter(posts.id == id, posts.user == current_user).first()
-#         if posts:
-#             posts.job = form.job.data
-#             posts.work_size = form.work_size.data
-#             posts.collaborators = form.collaborators.data
-#             posts.start_date = form.start_date.data
-#             posts.end_date = form.end_date.data
-#             posts.is_finished = form.is_finished.data
-#             db_sess.commit()
-#             return redirect('/')
-#         else:
-#             abort(404)
-#     return render_template('posts.html', title='Редактирование работы', form=form)
-
-
-
-# @app.route('/posts_delete/<int:id>', methods=['GET', 'POST'])
-# @login_required
-# def news_delete(id):
-#     db_sess = db_session.create_session()
-#     posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
-#     if posts:
-#         db_sess.delete(posts)
-#         db_sess.commit()
-#     else:
-#         abort(404)
-#     return redirect('/')
-
-
+@app.route('/posts_delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def posts_delete(id):
+    db_sess = db_session.create_session()
+    posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
+    if posts:
+        db_sess.delete(posts)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/')
 
 
 @app.errorhandler(404)
