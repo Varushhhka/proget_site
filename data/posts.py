@@ -1,6 +1,7 @@
 import sqlalchemy
 from sqlalchemy import orm
 from sqlalchemy_serializer import SerializerMixin
+
 from .db_session import SqlAlchemyBase
 
 
@@ -9,13 +10,13 @@ class Posts(SqlAlchemyBase, SerializerMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     author = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
-    text = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    photo = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    category_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("category.id"))
+    text = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
     date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
 
     user = orm.relation('User')
-    categories = orm.relation("Category", secondary="association", backref="posts")
+    category = orm.relation('Category')
 
     def __repr__(self):
         return f'<Post> {self.text}'

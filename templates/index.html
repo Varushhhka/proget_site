@@ -5,31 +5,36 @@
 {% if current_user.is_authenticated %}
     <a href="posts" class="btn btn-secondary">Adding a post</a>
 {% endif %}
-<a href="/departments" class="btn btn-secondary">Departments</a>
+<a href="/artists" class="btn btn-secondary">Artists</a>
 {% for item in posts%}
 <div class="col-md6 border rounded">
     <br>
     <h2>Post #{{item.id}}</h2>
     <div>
-
         <table cellspacing="5" cellpadding="10">
             <tr>
-                <td class="alert alert-info" role="alert">Text</td>
                 <td class="alert alert-info" role="alert">Author</td>
-                <td class="alert alert-info" role="alert">Photo</td>
                 <td class="alert alert-info" role="alert">Hazard category</td>
                 <td class="alert alert-info" role="alert">Is finished</td>
             </tr>
             <tr>
-                <td>{{item.text}}</td>
                 <td>{{item.author}}</td>
-                <td>{{item.photo}}</td>
                 <td>{{item.category}}</td>
                 {% if item.is_finished %}
                     <td class="alert alert-success" role="alert">Is finished</td>
                 {% else %}
                     <td class="alert alert-danger" role="alert">Is not finished</td>
                 {% endif %}
+            </tr>
+            <tr>
+                <td class="alert alert-info" role="alert">Text</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{item.text}}</td>
+            </tr>
+            <tr>
+                <td class="alert alert-info" role="alert">Time of creation:</td>
+                <td>{{item.date}}</td>
             </tr>
         </table>
     </div>

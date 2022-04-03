@@ -36,16 +36,13 @@ def create_user():
     db_sess = db_session.create_session()
     if not request.json:
         return jsonify({'error': 'Empty request'})
-    elif not all(key in request.json for key in ['surname', 'name', 'age', 'position', 'speciality',
-                                                 'address', 'email', 'hashed_password']):
+    elif not all(key in request.json for key in ['surname', 'name', 'age', 'photo', 'email', 'hashed_password']):
         return jsonify({'error': 'Bad request'})
     user = User(
         surname=request.json['surname'],
         name=request.json['name'],
         age=request.json['age'],
-        position=request.json['position'],
-        speciality=request.json['speciality'],
-        address=request.json['address'],
+        photo=request.json['photo'],
         email=request.json['email'],
         hashed_password=request.json['hashed_password']
     )
@@ -76,9 +73,7 @@ def edit_users(users_id):
     user.surname = request.json.get('surname', user.surname)
     user.name = request.json.get('name', user.name)
     user.age = request.json.get('age', user.age)
-    user.position = request.json.get('position', user.position)
-    user.speciality = request.json.get('speciality', user.speciality)
-    user.address = request.json.get('address', user.address)
+    user.photo = request.json.get('position', user.photo)
     user.email = request.json.get('email', user.email)
     user.hashed_password = request.json.get('hashed_password', user.hashed_password)
     db_sess.commit()

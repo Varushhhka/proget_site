@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 # from api import user_resource, job_resource
 # from blueprint import jobs_api, user_api
 from data import db_session
+from data.artists import Artists
 
 from data.posts import Posts
 from data.user import User
@@ -136,17 +137,25 @@ def posts_delete(id):
     return redirect('/')
 
 
-@app.errorhandler(404)
-def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
+@app.route('/artists')
+def cards():
+    list_info = []
+    db_sess = db_session.create_session()
+    artists = db_sess.query(Artists).all()
+    for artist in artists:
+        list_info.append({
+            'image': f'imgs/artists/photo/{artist.surname}',
+            'full_name': f'{artist.name} {artist.surname}',
+            'info': artist.initial_text,
+            'name': artist.surname
+        })
+    return render_template('all_artists.html', artists=list_info)
 
+
+artists = [{'image': ''}]
 
 def main():
     db_session.global_init("db/artists.db")
-    # api.add_resource(user_resource.UsersResource, '/api/v2/users')
-    # api.add_resource(user_resource.UsersListResource, '/api/v2/users/<int:user_id>')
-    # api.add_resource(job_resource.postsResource, '/api/v2/posts')
-    # api.add_resource(job_resource.postsListResource, '/api/v2/posts/<int:job_id>')
     # app.register_blueprint(jobs_api.blueprint)
     # app.register_blueprint(user_api.blueprint)
     app.run()
