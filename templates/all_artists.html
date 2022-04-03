@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Artists</h1>
+{% for artist in artists %}
+<div class="card" style="width: 18rem;">
+  <img src="{{ artist.image }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ artists.full_name }}</h5>
+    <p class="card-text">{{ artists.info }}</p>
+    <a href="/artist/{{ artists.name }}" class="btn btn-primary">Read more</a>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
