@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, jsonify, make_response
+from flask import Flask, render_template, request
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
-from flask_restful import abort, Api
+from flask_restful import abort
 from werkzeug.utils import redirect
 
-# from api import user_resource, job_resource
 # from blueprint import jobs_api, user_api
 from data import db_session
 from data.artists import Artists
@@ -14,7 +13,6 @@ from forms.posts import PostsForm
 from forms.user import RegisterForm, LoginForm
 
 app = Flask(__name__)
-# api = Api()
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -46,6 +44,7 @@ def register():
             surname=form.surname.data,
             name=form.name.data,
             age=form.age.data,
+            photo=form.photo.data,
             email=form.email.data
         )
         user.set_password(form.password.data)
@@ -78,14 +77,13 @@ def logout():
 
 
 @app.route('/posts',  methods=['GET', 'POST'])
-# @login_required
+@login_required
 def add_posts():
     form = PostsForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         posts = Posts()
         posts.text = form.text.data
-        posts.photo = form.photo.data
         posts.date = form.date.data
         posts.is_finished = form.is_finished.data
         current_user.posts.append(posts)
@@ -96,7 +94,7 @@ def add_posts():
 
 
 @app.route('/posts/<int:id>', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def edit_posts(id):
     form = PostsForm()
     if request.method == "GET":
@@ -104,7 +102,6 @@ def edit_posts(id):
         posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
         if posts:
             form.text.data = posts.text
-            form.photo.data = posts.photo
             form.date.data = posts.date
             form.is_finished.data = posts.is_finished
         else:
@@ -114,7 +111,6 @@ def edit_posts(id):
         posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
         if posts:
             posts.text = form.text.data
-            posts.photo = form.photo.data
             posts.date = form.date.data
             posts.is_finished = form.is_finished.data
             db_sess.commit()
@@ -151,8 +147,6 @@ def cards():
         })
     return render_template('all_artists.html', artists=list_info)
 
-
-artists = [{'image': ''}]
 
 def main():
     db_session.global_init("db/artists.db")
