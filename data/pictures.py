@@ -10,9 +10,9 @@ class Pictures(SqlAlchemyBase, SerializerMixin):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    artists_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('artist.id'))
+    artists_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('artists.id'))
 
-    artists = orm.relation('Artists')
+    artist = orm.relation('Artists')
 
     def __repr__(self):
         return f'<Artist> {self.text}'

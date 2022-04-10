@@ -14,7 +14,7 @@ class Artists(SqlAlchemyBase, SerializerMixin):
     patronymic = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     initial_text = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
 
-    pictures = orm.relation("Pictures", back_populate='artists')
+    pictures = orm.relation("Pictures", back_populates='artist')
 
     def __repr__(self):
         return f'<Artist> {self.text}'
