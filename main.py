@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 # from blueprint import jobs_api, user_api
 from data import db_session
 from data.artists import Artists
+from data.pictures import Pictures
 
 from data.posts import Posts
 from data.user import User
@@ -76,7 +77,7 @@ def logout():
     return redirect("/")
 
 
-@app.route('/posts',  methods=['GET', 'POST'])
+@app.route('/posts', methods=['GET', 'POST'])
 @login_required
 def add_posts():
     form = PostsForm()
@@ -140,12 +141,30 @@ def cards():
     artists = db_sess.query(Artists).all()
     for artist in artists:
         list_info.append({
-            'image': f'imgs/artists/photo/{artist.surname}',
+            'image': f'imgs/artists/photo/{artist.id}',
             'full_name': f'{artist.name} {artist.surname}',
-            'info': artist.initial_text,
-            'name': artist.surname
+            'info': artist.initial_text
         })
     return render_template('all_artists.html', artists=list_info)
+
+
+@app.route('/artist/<int:id>')
+def artist_view(id):
+    with open(f'info/{id}.txt') as file:
+        date = file.readlines()
+    sp = []
+    db_sess = db_session.create_session()
+    pictures = db_sess.query(Pictures).filter(Pictures.artists_id == id).all()
+    for elem in pictures:
+        sp.append((elem.id, elem.name))
+    context = {
+        'biography': date[0],
+        'facts': date[1],
+        'family': date[2],
+        'awards': date[3],
+        'list_of_imgs': sp
+    }
+    return render_template('artist.txt', **context)
 
 
 def main():

@@ -5,16 +5,14 @@ from sqlalchemy_serializer import SerializerMixin
 from data.db_session import SqlAlchemyBase
 
 
-class Artists(SqlAlchemyBase, SerializerMixin):
-    __tablename__ = 'artists'
+class Pictures(SqlAlchemyBase, SerializerMixin):
+    __tablename__ = 'pictures'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    patronymic = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    initial_text = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
+    artists_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('artist.id'))
 
-    pictures = orm.relation("Pictures", back_populate='artists')
+    artists = orm.relation('Artists')
 
     def __repr__(self):
         return f'<Artist> {self.text}'

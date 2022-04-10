@@ -3,7 +3,7 @@
 {% block content %}
 {% for item in artist%}
 <h1>{{ item.name }} {{ item.surname }} {{ item.patronymic }}</h1>
-<img src="..." class="img-thumbnail" alt="...">
+<img src="{{url_for('static', filename=f'imgs/artists/photo/{item.id}.jpg'}}" class="img-thumbnail" alt="...">
 <p align="right">{{ item.initial_text }}</p>
 
 <div class="accordion" id="accordionExample">
@@ -53,7 +53,10 @@
   <div class="carousel-inner">
       {% for elem in list_of_images %}
         <div class="carousel-item {% if loop.first %} active {% endif %}">
-          <img src="{{url_for('static', filename=elem)}}" class="d-block w-100" alt="...">
+          <img src="{{url_for('static', filename=f'imgs/artists/pictures/{elem[0]}.jpg')}}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+             <h5>{{ elem[1] }}</h5>
+          </div>
         </div>
       {% endfor %}
       </div>
