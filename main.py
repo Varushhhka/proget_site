@@ -148,23 +148,30 @@ def cards():
     return render_template('all_artists.html', artists=list_info)
 
 
-@app.route('/artist/<int:id>')
-def artist_view(id):
-    with open(f'info/{id}.txt') as file:
+@app.route('/artist/<int:artist_id>')
+def artist_view(artist_id):
+    with open(f'static/info/{artist_id}.txt', encoding='utf-8') as file:
         date = file.readlines()
     sp = []
     db_sess = db_session.create_session()
-    pictures = db_sess.query(Pictures).filter(Pictures.artists_id == id).all()
+    pictures = db_sess.query(Pictures).filter(Pictures.artists_id == artist_id).all()
     for elem in pictures:
-        sp.append((elem.id, elem.name))
+        sp.append((f'imgs/artists/pictures/{elem.id}.jpg', elem.name))
+    artist = db_sess.query(Artists).get(artist_id)
+    artist_info = {
+        'name': f'{artist.name} {artist.surname} {artist.patronymic}',
+        'photo': f'imgs/artists/photo/{artist.id}.jpg',
+        'initial_text': artist.initial_text
+    }
     context = {
+        'artist': artist_info,
         'biography': date[0],
         'facts': date[1],
         'family': date[2],
         'awards': date[3],
         'list_of_imgs': sp
     }
-    return render_template('artist.txt', **context)
+    return render_template('artist.html', **context)
 
 
 def main():
