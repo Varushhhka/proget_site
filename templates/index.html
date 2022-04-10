@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Posts</h1>
 {% if current_user.is_authenticated %}
-    <a href="posts" class="btn btn-secondary">Adding a post</a>
+<a href="posts" class="btn btn-secondary">Adding a post</a>
 {% endif %}
 <a href="/artists" class="btn btn-secondary">Artists</a>
 {% for item in posts%}
@@ -21,9 +21,9 @@
                 <td>{{ item.author }}</td>
                 <td>{{ item.category }}</td>
                 {% if item.is_finished %}
-                    <td class="alert alert-success" role="alert">Is finished</td>
+                <td class="alert alert-success" role="alert">Is finished</td>
                 {% else %}
-                    <td class="alert alert-danger" role="alert">Is not finished</td>
+                <td class="alert alert-danger" role="alert">Is not finished</td>
                 {% endif %}
             </tr>
             <tr>

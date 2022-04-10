@@ -141,9 +141,10 @@ def cards():
     artists = db_sess.query(Artists).all()
     for artist in artists:
         list_info.append({
-            'image': f'imgs/artists/photo/{artist.id}',
+            'image': f'imgs/artists/photo/{artist.id}.jpg',
             'full_name': f'{artist.name} {artist.surname}',
-            'info': artist.initial_text
+            'info': artist.initial_text,
+            'id': artist.id
         })
     return render_template('all_artists.html', artists=list_info)
 
@@ -159,16 +160,16 @@ def artist_view(artist_id):
         sp.append((f'imgs/artists/pictures/{elem.id}.jpg', elem.name))
     artist = db_sess.query(Artists).get(artist_id)
     artist_info = {
-        'name': f'{artist.name} {artist.surname} {artist.patronymic}',
+        'name': f'{artist.name} {artist.patronymic} {artist.surname}',
         'photo': f'imgs/artists/photo/{artist.id}.jpg',
         'initial_text': artist.initial_text
     }
     context = {
         'artist': artist_info,
         'biography': date[0],
-        'facts': date[1],
+        'facts': date[1].split('*'),
         'family': date[2],
-        'awards': date[3],
+        'awards': date[3].split('*'),
         'list_of_imgs': sp
     }
     return render_template('artist.html', **context)
