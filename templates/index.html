@@ -18,7 +18,7 @@
                 <td class="alert alert-info" role="alert">Завершено?</td>
             </tr>
             <tr>
-                <td>{{ item.author }}</td>
+                <td>{{ item.user.name }}</td>
                 <td>{{ item.category.name }}</td>
                 {% if item.is_finished %}
                 <td class="alert alert-success" role="alert">Да</td>
@@ -39,7 +39,7 @@
         </table>
     </div>
     {% if current_user.is_authenticated and current_user == item.user %}
-    <div>
+    <div class="    m-2">
         <a href="/posts/{{ item.id }}" class="btn btn-warning">Изменить</a>
         <a href="/posts_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
     </div>
