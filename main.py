@@ -180,6 +180,15 @@ def main():
     # app.register_blueprint(jobs_api.blueprint)
     # app.register_blueprint(user_api.blueprint)
     app.run()
+    # post = Posts()
+    # post.category_id = 1
+    # post.title = 'Русское искусство конца XIX до начала XX в.'
+    # post.text = 'Для живописцев рубежа веков свойственны иные способы выражения, чем у передвижников, иные формы художественного творчества, заключающиеся в образах противоречивых и усложненных. Художники мучительно ищут гармонию и красоту в мире, который в основе своей чужд и гармонии, и красоте. ' \
+    #             'Вот почему свою миссию многие видели в воспитании чувства прекрасного.'
+    # post.is_finished = True
+    # db_sess = db_session.create_session()
+    # db_sess.add(post)
+    # db_sess.commit()
 
 
 if __name__ == '__main__':
