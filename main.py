@@ -170,7 +170,7 @@ def artist_view(artist_id):
         'facts': date[1].split('*'),
         'family': date[2],
         'awards': date[3].split('*'),
-        'list_of_imgs': sp
+        'list_of_images': sp
     }
     return render_template('artist.html', **context)
 
@@ -179,6 +179,14 @@ def main():
     db_session.global_init("db/artists.db")
     # app.register_blueprint(jobs_api.blueprint)
     # app.register_blueprint(user_api.blueprint)
+    # post = Posts()
+    # post.category_id = 1
+    # post.title = 'Тема'
+    # post.text = 'Найти инфу'
+    # post.is_finished = True
+    # db_sess = db_session.create_session()
+    # db_sess.add(post)
+    # db_sess.commit()
     app.run()
 
 

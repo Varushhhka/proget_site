@@ -1,55 +1,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Posts</h1>
+<h1>Записи</h1>
 {% if current_user.is_authenticated %}
-<a href="posts" class="btn btn-secondary">Adding a post</a>
+<a href="posts" class="btn btn-secondary">Добавить запись</a>
 {% endif %}
-<a href="/artists" class="btn btn-secondary">Artists</a>
+<a href="/artists" class="btn btn-secondary">Художники</a>
 {% for item in posts%}
 <div class="col-md6 border rounded">
     <br>
-    <h2>Post #{{ item.id }}</h2>
+    <h2>Запись #{{ item.id }}</h2>
     <div>
         <table cellspacing="5" cellpadding="10">
             <tr>
-                <td class="alert alert-info" role="alert">Author</td>
-                <td class="alert alert-info" role="alert">Hazard category</td>
-                <td class="alert alert-info" role="alert">Is finished</td>
+                <td class="alert alert-info" role="alert">Автор</td>
+                <td class="alert alert-info" role="alert">Категория</td>
+                <td class="alert alert-info" role="alert">Завершено?</td>
             </tr>
             <tr>
                 <td>{{ item.author }}</td>
                 <td>{{ item.category }}</td>
                 {% if item.is_finished %}
-                <td class="alert alert-success" role="alert">Is finished</td>
+                <td class="alert alert-success" role="alert">Да</td>
                 {% else %}
-                <td class="alert alert-danger" role="alert">Is not finished</td>
+                <td class="alert alert-danger" role="alert">Нет</td>
                 {% endif %}
             </tr>
             <tr>
-                <td class="alert alert-info" role="alert">Title</td>
-                <td class="alert alert-info" role="alert">{{ item.title }}</td>
+                <td class="alert alert-info" role="alert">Название</td>
+                <td>{{ item.title }}</td>
             </tr>
             <tr>
-                <td class="alert alert-info" role="alert">Text</td>
+                <td class="alert alert-info" role="alert">Текст</td>
             </tr>
             <tr>
                 <td colspan="2">{{ item.text }}</td>
             </tr>
             <tr>
-                <td class="alert alert-info" role="alert">Time of creation:</td>
+                <td class="alert alert-info" role="alert">Время создания:</td>
                 <td>{{ item.date }}</td>
             </tr>
         </table>
     </div>
     {% if current_user.is_authenticated and current_user == item.user %}
     <div>
-        <a href="/posts/{{ item.id }}" class="btn btn-warning">
-            Edit post
-        </a>
-        <a href="/posts_delete/{{ item.id }}" class="btn btn-danger">
-            Delete post
-        </a>
+        <a href="/posts/{{ item.id }}" class="btn btn-warning">Изменить</a>
+        <a href="/posts_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
     </div>
     {% endif %}
 </div>

@@ -81,9 +81,9 @@
                     <div class="carousel-inner">
                         {% for elem in list_of_images %}
                         <div class="carousel-item {% if loop.first %} active {% endif %}">
-                            <img src="{{ url_for('static', filename=elem[0]) }}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>{{ elem[1] }}</h5>
+                            <img src="{{ url_for('static', filename=elem[0]) }}" class="d-block" style="height: 400px; margin: auto" alt="...">
+                            <div class="" style="margin-top:100px">
+                                    <h5><span style="background-color: black; padding: 3px;">{{ elem[1] }}</span></h5>
                             </div>
                         </div>
                         {% endfor %}
