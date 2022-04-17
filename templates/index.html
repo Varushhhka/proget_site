@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>{{ item.author }}</td>
-                <td>{{ item.category }}</td>
+                <td>{{ item.category.name }}</td>
                 {% if item.is_finished %}
                 <td class="alert alert-success" role="alert">Да</td>
                 {% else %}
@@ -27,11 +27,7 @@
                 {% endif %}
             </tr>
             <tr>
-                <td class="alert alert-info" role="alert">Название</td>
-                <td>{{ item.title }}</td>
-            </tr>
-            <tr>
-                <td class="alert alert-info" role="alert">Текст</td>
+                <td class="alert alert-success" role="alert">{{ item.title }}</td>
             </tr>
             <tr>
                 <td colspan="2">{{ item.text }}</td>
