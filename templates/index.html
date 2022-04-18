@@ -39,7 +39,7 @@
         </table>
     </div>
     {% if current_user.is_authenticated and current_user == item.user %}
-    <div class="    m-2">
+    <div class="m-2">
         <a href="/posts/{{ item.id }}" class="btn btn-warning">Изменить</a>
         <a href="/posts_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
     </div>
