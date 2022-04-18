@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request
+import os
+
+from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from flask_restful import abort
-from werkzeug.utils import redirect
 
-# from blueprint import jobs_api, user_api
 from data import db_session
 from data.artists import Artists
 from data.pictures import Pictures
@@ -176,7 +176,7 @@ def artist_view(artist_id):
 
 
 def main():
-    db_session.global_init("db/artists.db")
+    db_session.global_init("./db/artists.db")
     # app.register_blueprint(jobs_api.blueprint)
     # app.register_blueprint(user_api.blueprint)
     app.run()
