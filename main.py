@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from flask_restful import abort
@@ -7,7 +5,6 @@ from flask_restful import abort
 from data import db_session
 from data.artists import Artists
 from data.pictures import Pictures
-
 from data.posts import Posts
 from data.user import User
 from forms.posts import PostsForm
@@ -136,7 +133,21 @@ def posts_delete(id):
 
 @app.route('/ost')
 def ost():
-    return render_template('ost.html')
+    with open(f'static/info/ost.txt', encoding='utf-8') as file:
+        date = file.readlines()
+    context = {
+        'pro': date[0].split('*'),
+        'con': date[1],
+        'group': date[2],
+        'axrr': date[3].split('*'),
+        'omaxrr': date[4].split('*'),
+        'osx': date[5].split('*'),
+        'rapx': date[6].split('*'),
+        'fosx': date[7],
+        'lef': date[8].split('*'),
+        'oct': date[9].split('*')
+    }
+    return render_template('ost.html', **context)
 
 
 @app.route('/artists')
