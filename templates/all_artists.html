@@ -3,7 +3,6 @@
 {% block pagename %}<h1>Художники</h1>{% endblock %}
 
 {% block content %}
-<h>...</h>
 <div class="row">
     {% for artist in artists %}
     <div class="col-4 mb-2">
@@ -14,7 +13,7 @@
                 <p class="card-text"
                    style="-webkit-line-clamp: 5; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
                     {{ artist.info }}</p>
-                <a href="/artist/{{ artist.id }}" class="btn btn-primary">Read more</a>
+                <a href="/artist/{{ artist.id }}" class="btn btn-primary">Читать далее</a>
             </div>
         </div>
     </div>

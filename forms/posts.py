@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired
 
 
 class PostsForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    text = TextAreaField('Text', validators=[DataRequired()])
-    date = StringField('Date')
-    is_finished = BooleanField('Is finished')
-    submit = SubmitField('Submit')
+    title = StringField('Заголовок', validators=[DataRequired()])
+    text = TextAreaField('Текст', validators=[DataRequired()])
+    date = StringField('Вреня создания')
+    is_finished = BooleanField('Закончено?¿')
+    submit = SubmitField('Готово')

@@ -134,6 +134,11 @@ def posts_delete(id):
     return redirect('/')
 
 
+@app.route('/ost')
+def ost():
+    return render_template('ost.html')
+
+
 @app.route('/artists')
 def cards():
     list_info = []
