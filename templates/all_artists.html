@@ -2,20 +2,20 @@
 
 {% block content %}
 <h1>Художники</h1>
-<div class="row">
-    {% for artist in artists %}
-    <div class="col-4 mb-2">
-        <div class="card" style="width: 18rem;">
-            <img src="{{ url_for('static', filename=artist.image) }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ artist.full_name }}</h5>
-                <p class="card-text"
-                   style="-webkit-line-clamp: 5; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
-                    {{ artist.info }}</p>
-                <a href="/artist/{{ artist.id }}" class="btn btn-primary">Читать далее</a>
+    <div class="row">
+        {% for artist in artists %}
+            <div class="col-4 mb-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ url_for('static', filename=artist.image) }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ artist.full_name }}</h5>
+                        <p class="card-text"
+                           style="-webkit-line-clamp: 5; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{ artist.info }}</p>
+                        <a href="/artist/{{ artist.id }}" class="btn btn-primary">Читать далее</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endblock %}

@@ -1,257 +1,257 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>ОСТ</h1>
-<p>
-    ОСТ, ОХСТ, Общество художников-станковистов — художественная группировка,
-    основанная в 1925 году в Москве группой выпускников ВХУТЕМАСа во главе
-    с Давидом Штеренбергом. Характерной чертой творчества ОСТа является
-    воспевание советской действительности с использованием приемов современного
-    европейского экспрессионизма. Существовало до 1931 года. Ведущие художники
-    ОСТ сыграли важную роль в развитии советской станковой, а также монументальной
-    живописи, книжной графики, плаката, театрально-декорационного искусства.
-</p>
-<h2>Создание:</h2>
-<p>
-    В 1924 году состоялась Первая дискуссионная выставка объединений активного
-    революционного искусства, где принимали участие студенты ВХУТЕМАСа в составе
-    следующих группировок:
-</p>
-<div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                Проекционисты
-            </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in pro %}
-                <p>{{line}}</p>
-                {% endfor %}
+    <h1>ОСТ</h1>
+    <p>
+        ОСТ, ОХСТ, Общество художников-станковистов — художественная группировка,
+        основанная в 1925 году в Москве группой выпускников ВХУТЕМАСа во главе
+        с Давидом Штеренбергом. Характерной чертой творчества ОСТа является
+        воспевание советской действительности с использованием приемов современного
+        европейского экспрессионизма. Существовало до 1931 года. Ведущие художники
+        ОСТ сыграли важную роль в развитии советской станковой, а также монументальной
+        живописи, книжной графики, плаката, театрально-декорационного искусства.
+    </p>
+    <h2>Создание:</h2>
+    <p>
+        В 1924 году состоялась Первая дискуссионная выставка объединений активного
+        революционного искусства, где принимали участие студенты ВХУТЕМАСа в составе
+        следующих группировок:
+    </p>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Проекционисты
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in pro %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Конкретивисты
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">{{ con }}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Группа трёх
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">{{ group }}</div>
             </div>
         </div>
     </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Конкретивисты
-            </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">{{ con }}
+    <br>
+    <h2>Идеология</h2>
+    <p>
+        Название группировки - Общество художников-станковистов - было связано
+        с бурными дискуссиями о судьбах и назначении искусства. Группа современных
+        остовцам живописцев принципиально отвергла станковые формы творчества ради
+        задач художественно-производственных, что членам будущего ОСТа пришлось не
+        по нраву. Собственно Штеренберг, ещё на своем посту в отделе ИЗО как
+        преподаватель способствовал развитию данного производственного искусства,
+        но как живописец и член ОСТа уже стал отстаивать плодотворность станковизма.
+        Остовцы считали своим эстетическим идеалом новейшие европейские течения,
+        в особенности экспрессионизм. Отчасти это было связано с тем, что большинство
+        членов объединения были выпускниками ВХУТЕМАСа — молодежью, стремившейся «выразить
+        энергию и бодрость молодой страны». ОСТ стали называть «самой левой среди правых
+        группировок». Исследователи отмечают, что на первых порах в программе и практике
+        ОСТа было много чисто умозрительного экспериментаторского пыла и озорства, но
+        важно другое — в этом Обществе царила творческая атмосфера, в нем господствовал
+        жадный интерес к революционной новизне современной действительности, к новым формам
+        жизни, а не только к новым формам живописи и графики ради них самих. ОСТ не бралось
+        за революционные темы Гражданской войны, а предпочитали мирные, светлые темы,
+        «приметы XX столетия», типические явления современной им мирной действительности:
+        жизнь индустриального города, промышленное производство, занятия спортом и др.
+        В воспитательном плане определялась «ориентация на художественную молодежь».
+    </p>
+    <h2>Характеристика живописи:</h2>
+    <p>
+        Члены ОСТа выступали за реалистическую живопись в обновленной форме,
+        противопоставляя её беспредметному искусству и конструктивизму. ОСТ утверждало
+        значение и жизнеспособность станковых форм искусства.</p>
+    <p>
+        Художники стремились выработать новый изобразительный язык, лаконичный
+        по форме и динамичный по композиции. Для произведений характерны обострённая
+        лаконичность формы, её нередкая примитивизация, динамика композиции,
+        графическая чёткость рисунка.
+    </p>
+    <h2>Конец Объединения:</h2>
+    <p>
+        Дейнека уходит из ОСТ ещё 1928 году по соображениям принципиального
+        характера. Одной из причин ухода было его несогласие с руководством
+        общества, прежде всего с Штеренбергом, которым не нравилось, что молодёжь
+        не ограничивается поисками живописной формы, а вторгается в смежные виды
+        искусства — плакат, журнальный рисунок, театральную декорацию, пробует
+        свои силы в создании монументальных тематических композиций.
+    </p>
+    <p>
+        Между членами ОСТ существовали немалые расхождения в оценке значения
+        отдельных видов и жанров искусства. Само же объединение в первоначальном
+        составе просуществовало недолго. Уже в 1928 году внутри него четко
+        определились две группы художников, отличающиеся своими творческими
+        позициями:
+    </p>
+    <ul>
+        <li>Одна из групп тяготела к изображению городской жизни, новой техники,
+            индустриального пейзажа, спорта, молодых, физически развитых людей.
+            Их работы отличала динамичность, четкость композиции, графичность в
+            передаче форм.
+        </li>
+        <li>Другая группа, объединявшаяся вокруг Штеренберга, работала в более
+            свободной манере предпочтя лиричность и живописность рациональной
+            организации произведений.
+        </li>
+    </ul>
+    <p>
+        В начале 1931 года остовцы пришли к решению, что одна из групп должна
+        выйти из Общества. Этой группой стали художники во главе со Штеренбергом,
+        за которыми сохранилось старое название. Оставшиеся художники вскоре
+        отказались от названия ОСТ и заявили о себе как о новом объединении -
+        «Изобригада» («Бригада художников»), некоторая часть участников также
+        перешла в организованный в 1930 году «Октябрь», куда вошел Дейнека.
+    </p>
+    <p>
+        В конце концов, собственно ОСТ и его наследники, наряду со всеми другими
+        художественными объединениями, оказалась распущена в 1932 году постановлением
+        «О перестройке литературно-художественных организаций». Его остатки влились
+        в Московское отделение Союза советских художников.
+    </p>
+    <h2>Противники ОСТ (и другие объединения):</h2>
+    <div class="accordion" id="accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    АХРР
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in axrr %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    ОМАХРР
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in omaxrr %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    РАПХ
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in rapx %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    ОСХ
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in osx %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    ФОСХ
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">{{ fosx }}</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    ЛЕФ
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in lef %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                    Октябрь
+                </button>
+            </h2>
+            <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    {% for line in oct %}
+                        <p>{{ line }}</p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Группа трёх
-            </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">{{ group }}</div>
-        </div>
-    </div>
-</div>
-<br>
-<h2>Идеология</h2>
-<p>
-    Название группировки - Общество художников-станковистов - было связано
-    с бурными дискуссиями о судьбах и назначении искусства. Группа современных
-    остовцам живописцев принципиально отвергла станковые формы творчества ради
-    задач художественно-производственных, что членам будущего ОСТа пришлось не
-    по нраву. Собственно Штеренберг, ещё на своем посту в отделе ИЗО как
-    преподаватель способствовал развитию данного производственного искусства,
-    но как живописец и член ОСТа уже стал отстаивать плодотворность станковизма.
-    Остовцы считали своим эстетическим идеалом новейшие европейские течения,
-    в особенности экспрессионизм. Отчасти это было связано с тем, что большинство
-    членов объединения были выпускниками ВХУТЕМАСа — молодежью, стремившейся «выразить
-    энергию и бодрость молодой страны». ОСТ стали называть «самой левой среди правых
-    группировок». Исследователи отмечают, что на первых порах в программе и практике
-    ОСТа было много чисто умозрительного экспериментаторского пыла и озорства, но
-    важно другое — в этом Обществе царила творческая атмосфера, в нем господствовал
-    жадный интерес к революционной новизне современной действительности, к новым формам
-    жизни, а не только к новым формам живописи и графики ради них самих. ОСТ не бралось
-    за революционные темы Гражданской войны, а предпочитали мирные, светлые темы,
-    «приметы XX столетия», типические явления современной им мирной действительности:
-    жизнь индустриального города, промышленное производство, занятия спортом и др.
-    В воспитательном плане определялась «ориентация на художественную молодежь».
-</p>
-<h2>Характеристика живописи:</h2>
-<p>
-    Члены ОСТа выступали за реалистическую живопись в обновленной форме,
-    противопоставляя её беспредметному искусству и конструктивизму. ОСТ утверждало
-    значение и жизнеспособность станковых форм искусства.</p>
-<p>
-    Художники стремились выработать новый изобразительный язык, лаконичный
-    по форме и динамичный по композиции. Для произведений характерны обострённая
-    лаконичность формы, её нередкая примитивизация, динамика композиции,
-    графическая чёткость рисунка.
-</p>
-<h2>Конец Объединения:</h2>
-<p>
-    Дейнека уходит из ОСТ ещё 1928 году по соображениям принципиального
-    характера. Одной из причин ухода было его несогласие с руководством
-    общества, прежде всего с Штеренбергом, которым не нравилось, что молодёжь
-    не ограничивается поисками живописной формы, а вторгается в смежные виды
-    искусства — плакат, журнальный рисунок, театральную декорацию, пробует
-    свои силы в создании монументальных тематических композиций.
-</p>
-<p>
-    Между членами ОСТ существовали немалые расхождения в оценке значения
-    отдельных видов и жанров искусства. Само же объединение в первоначальном
-    составе просуществовало недолго. Уже в 1928 году внутри него четко
-    определились две группы художников, отличающиеся своими творческими
-    позициями:
-</p>
-<ul>
-    <li>Одна из групп тяготела к изображению городской жизни, новой техники,
-        индустриального пейзажа, спорта, молодых, физически развитых людей.
-        Их работы отличала динамичность, четкость композиции, графичность в
-        передаче форм.
-    </li>
-    <li>Другая группа, объединявшаяся вокруг Штеренберга, работала в более
-        свободной манере предпочтя лиричность и живописность рациональной
-        организации произведений.
-    </li>
-</ul>
-<p>
-    В начале 1931 года остовцы пришли к решению, что одна из групп должна
-    выйти из Общества. Этой группой стали художники во главе со Штеренбергом,
-    за которыми сохранилось старое название. Оставшиеся художники вскоре
-    отказались от названия ОСТ и заявили о себе как о новом объединении -
-    «Изобригада» («Бригада художников»), некоторая часть участников также
-    перешла в организованный в 1930 году «Октябрь», куда вошел Дейнека.
-</p>
-<p>
-    В конце концов, собственно ОСТ и его наследники, наряду со всеми другими
-    художественными объединениями, оказалась распущена в 1932 году постановлением
-    «О перестройке литературно-художественных организаций». Его остатки влились
-    в Московское отделение Союза советских художников.
-</p>
-<h2>Противники ОСТ (и другие объединения):</h2>
-<div class="accordion" id="accordion">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                АХРР
-            </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in axrr %}
-                <p>{{line}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFive">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                ОМАХРР
-            </button>
-        </h2>
-        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in omaxrr %}
-                <p>{{line}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingSix">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                РАПХ
-            </button>
-        </h2>
-        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in rapx %}
-                <p>{{line}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingSeven">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                ОСХ
-            </button>
-        </h2>
-        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in osx %}
-                <p>{{line}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingEight">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                ФОСХ
-            </button>
-        </h2>
-        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">{{ fosx }}</div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingNine">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-               ЛЕФ
-            </button>
-        </h2>
-        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in lef %}
-                <p>{{line}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingNTen">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-               Октябрь
-            </button>
-        </h2>
-        <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
-             data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                {% for line in oct %}
-                <p>{{line}}</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
-<h2>Выставки:</h2>
-<ul>
-    <li>1925 (Москва, Музей живописной культуры)</li>
-    <li>апрель-май 1926 (Москва, Государственный Исторический музей)</li>
-    <li>апрель 1927 (Москва. Музей живописной культуры)</li>
-    <li>апрель 1928 (Москва. Музей живописной культуры)</li>
-</ul>
+    <h2>Выставки:</h2>
+    <ul>
+        <li>1925 (Москва, Музей живописной культуры)</li>
+        <li>апрель-май 1926 (Москва, Государственный Исторический музей)</li>
+        <li>апрель 1927 (Москва. Музей живописной культуры)</li>
+        <li>апрель 1928 (Москва. Музей живописной культуры)</li>
+    </ul>
 {% endblock %}

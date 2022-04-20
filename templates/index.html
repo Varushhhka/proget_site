@@ -1,50 +1,53 @@
 {% extends "base.html" %}
-
+{% block pagename %}<h1>Записи</h1>{% endblock %}
 {% block content %}
-<h1>Записи</h1>
-{% if current_user.is_authenticated %}
-<a href="posts" class="btn btn-secondary">Добавить запись</a>
-{% endif %}
-<a href="/artists" class="btn btn-secondary m-2">Художники</a>
-<a href="/ost" class="btn btn-secondary m-2">ОСТ</a>
-{% for item in posts%}
-<br>
-<h2>Запись #{{ item.id }}</h2>
-<div class="col-md6 border rounded">
-    <div>
-        <table cellspacing="5" cellpadding="10">
-            <tr>
-                <td class="alert alert-info" role="alert">Автор</td>
-                <td class="alert alert-info" role="alert">Категория</td>
-                <td class="alert alert-info" role="alert">Завершено?¿</td>
-            </tr>
-            <tr>
-                <td>{{ item.user.name }}</td>
-                <td>{{ item.category.name }}</td>
-                {% if item.is_finished %}
-                <td class="alert alert-success" role="alert">Да</td>
-                {% else %}
-                <td class="alert alert-danger" role="alert">Нет</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <td class="alert alert-success" role="alert">{{ item.title }}</td>
-            </tr>
-            <tr>
-                <td colspan="2">{{ item.text }}</td>
-            </tr>
-            <tr>
-                <td class="alert alert-info" role="alert">Время создания:</td>
-                <td>{{ item.date.strftime('%d.%d.%Y %H:%M') }}</td>
-            </tr>
-        </table>
-    </div>
-    {% if current_user.is_authenticated and current_user == item.user %}
-    <div class="m-2">
-        <a href="/posts/{{ item.id }}" class="btn btn-warning">Изменить</a>
-        <a href="/posts_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
-    </div>
+    {% if current_user.is_authenticated %}
+        <a href="posts" class="btn btn-secondary">Добавить запись</a>
     {% endif %}
-</div>
-{% endfor %}
+    <a href="/artists" class="btn btn-secondary m-2">Художники</a>
+    <a href="/ost" class="btn btn-secondary m-2">ОСТ</a>
+    {% for item in posts %}
+        <br>
+<h2>Запись #{{ item.id }}</h2>
+        <div class="col-md6 border rounded">
+            <div>
+                <table cellspacing="5" cellpadding="10">
+                    <tr>
+                        <td class="alert alert-info" role="alert">Автор</td>
+                        <td class="alert alert-info" role="alert">Категория</td>
+                        <td class="alert alert-info" role="alert">Завершено?¿</td>
+                    </tr>
+                    <tr>
+                        <td>{{ item.user.name }}</td>
+                        <td>{{ item.category.name }}</td>
+                        {% if item.is_finished %}
+                            <td class="alert alert-success" role="alert">Да</td>
+                        {% else %}
+                            <td class="alert alert-danger" role="alert">Нет</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td class="alert alert-success" role="alert">{{ item.title }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{ item.text }}</td>
+                    </tr>
+                    <tr>
+                        <td class="alert alert-info" role="alert">Время создания:</td>
+                        <td>{{ item.date.strftime('%d.%d.%Y %H:%M') }}</td>
+                    </tr>
+                </table>
+            </div>
+            {% if current_user.is_authenticated %}
+                <div class="m-2">
+                    <a href="/translate/{{ item.id }}" class="btn btn-primary">Перевести</a>
+                    {% if current_user == item.user %}
+                        <a href="/posts/{{ item.id }}" class="btn btn-warning">Изменить</a>
+                        <a href="/posts_delete/{{ item.id }}" class="btn btn-danger">Удалить</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        </div>
+    {% endfor %}
 {% endblock %}
