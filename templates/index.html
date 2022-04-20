@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td class="alert alert-info" role="alert">Время создания:</td>
-                <td>{{ item.date }}</td>
+                <td>{{ item.date.strftime('%d.%d.%Y %H:%M') }}</td>
             </tr>
         </table>
     </div>
