@@ -30,7 +30,11 @@
                         <td class="alert alert-success" role="alert">{{ item.title }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2">{{ item.text }}</td>
+                        <td colspan="2">
+                            {% for elem in item.text.split('*') %}
+                            <p>{{elem}}</p>
+                            {% endfor %}
+                        </td>
                     </tr>
                     <tr>
                         <td class="alert alert-info" role="alert">Время создания:</td>
