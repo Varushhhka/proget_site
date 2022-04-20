@@ -4,6 +4,7 @@ from flask_restful import abort
 
 from data import db_session
 from data.artists import Artists
+from data.category import Category
 from data.pictures import Pictures
 from data.posts import Posts
 from data.user import User
@@ -32,6 +33,7 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
+
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
             return render_template('register.html', title='Регистрация',
@@ -78,12 +80,14 @@ def logout():
 @login_required
 def add_posts():
     form = PostsForm()
+    db_sess = db_session.create_session()
+    form.category.choices = [(c.id, c.name) for c in db_sess.query(Category).all()]
     if form.validate_on_submit():
-        db_sess = db_session.create_session()
         posts = Posts()
+        posts.title = form.title.data
         posts.text = form.text.data
-        posts.date = form.date.data
         posts.is_finished = form.is_finished.data
+        posts.category_id = form.category.data
         current_user.posts.append(posts)
         db_sess.merge(current_user)
         db_sess.commit()
@@ -95,21 +99,23 @@ def add_posts():
 @login_required
 def edit_posts(id):
     form = PostsForm()
+    db_sess = db_session.create_session()
+    form.category.choices = [(c.id, c.name) for c in db_sess.query(Category).all()]
     if request.method == "GET":
-        db_sess = db_session.create_session()
         posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
         if posts:
+            form.title.data = posts.title
             form.text.data = posts.text
-            form.date.data = posts.date
+            form.category.data = posts.category_id
             form.is_finished.data = posts.is_finished
         else:
             abort(404)
     if form.validate_on_submit():
-        db_sess = db_session.create_session()
         posts = db_sess.query(Posts).filter(Posts.id == id, Posts.user == current_user).first()
         if posts:
             posts.text = form.text.data
-            posts.date = form.date.data
+            posts.title = form.title.data
+            posts.category_id = form.category.data
             posts.is_finished = form.is_finished.data
             db_sess.commit()
             return redirect('/')
