@@ -84,7 +84,6 @@
                     display: block;
                     position: relative;
                     overflow: hidden;
-                    cursor: default;
                 }
 
                 .hover-blur img {
@@ -185,7 +184,7 @@
                             {% for elem in list_of_images %}
                                 <div class="carousel-item hover-blur {% if loop.first %} active {% endif %}"
                                      data-bs-interval="10000000">
-                                    <a href="" title="" class="d-block">
+                                    <a href="" title="" class="d-block disable-link">
                                         <img src="{{ url_for('static', filename=elem[0]) }}" class="d-block"/>
                                         <h2><span class="text-white">{{ elem[1] }}</span></h2>
                                     </a>
