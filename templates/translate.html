@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block pagename %} <h1>Перевод статьи</h1> {% endblock %}
 
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.text }}</p>
+        </div>
+        <div class="col">
+            <h2>{{ translate.title }}</h2>
+            <p>{{ translate.text }}</p>
+        </div>
+    </div>
 {% endblock %}

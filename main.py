@@ -1,3 +1,4 @@
+import requests as requests
 from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from flask_restful import abort
@@ -172,14 +173,16 @@ def cards():
 
 @app.route('/artist/<int:artist_id>')
 def artist_view(artist_id):
+    db_sess = db_session.create_session()
+    artist = db_sess.query(Artists).get(artist_id)
+    if not artist:
+        abort(404)
     with open(f'static/info/{artist_id}.txt', encoding='utf-8') as file:
         date = file.readlines()
     sp = []
-    db_sess = db_session.create_session()
     pictures = db_sess.query(Pictures).filter(Pictures.artists_id == artist_id).all()
     for elem in pictures:
         sp.append((f'imgs/artists/pictures/{elem.id}.jpg', elem.name))
-    artist = db_sess.query(Artists).get(artist_id)
     artist_info = {
         'name': f'{artist.name} {artist.patronymic} {artist.surname}',
         'photo': f'imgs/artists/photo/{artist.id}.jpg',
@@ -194,6 +197,48 @@ def artist_view(artist_id):
         'list_of_images': sp
     }
     return render_template('artist.html', **context)
+
+
+@app.route('/translate/<int:post_id>')
+def translate(post_id):
+    db_sess = db_session.create_session()
+    post = db_sess.query(Posts).get(post_id)
+    if not post:
+        abort(404)
+
+    url = "https://iam.api.cloud.yandex.net/iam/v1/tokens"
+    data = {
+        'yandexPassportOauthToken': 'AQAAAABbFfJRAATuwZ7L2UW9e0B3qlbQuv8wXRo'
+    }
+    headers = {
+        'ContentType': 'Application/json'
+    }
+
+    token = requests.request("POST", url, json=data, headers=headers).json()['iamToken']
+
+    url = "https://translate.api.cloud.yandex.net/translate/v2/translate"
+    folder_id = 'b1g9us6433g8mth0q7m4'
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer {0}".format(token)
+    }
+
+    body = {
+        "targetLanguageCode": 'en',
+        "texts": [post.title, post.text],
+        "folderId": folder_id,
+    }
+
+    data = requests.request("POST", url, headers=headers, json=body).json()['translations']
+
+    context = {
+        'post': post,
+        'translate': {
+            'title': data[0]['text'],
+            'text': data[1]['text']
+        }
+    }
+    return render_template('translate.html', **context)
 
 
 def main():
