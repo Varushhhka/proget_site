@@ -6,7 +6,7 @@
     {% endif %}
     {% for item in posts %}
         <br>
-        <h2>Запись #{{ item.id }}</h2>
+        <h2>Запись #{{ loop.index }}</h2>
         <div class="col-md6 border rounded">
             <div>
                 <table cellspacing="5" cellpadding="10">
