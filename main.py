@@ -1,3 +1,5 @@
+import os
+
 import requests as requests
 from flask import Flask, render_template
 from flask_login import LoginManager
@@ -137,7 +139,8 @@ def main():
     app.register_blueprint(user_api.blueprint)
     app.register_blueprint(posts_blueprint.blueprint)
     app.register_blueprint(user_blueprint.blueprint)
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 if __name__ == '__main__':
